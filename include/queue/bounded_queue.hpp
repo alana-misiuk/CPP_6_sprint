@@ -1,10 +1,17 @@
 #pragma once
 #include "queue/queue.hpp"
 
+#include <mutex>
+#include <queue>
+
 namespace dispatcher::queue {
 
 class BoundedQueue : public IQueue {
-    // здесь ваш код
+private:
+    int capacity_;
+    std::queue<std::function<void()>> queue_;
+    std::mutex mutex_;
+
 public:
     explicit BoundedQueue(int capacity);
 

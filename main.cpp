@@ -23,4 +23,10 @@ int main() {
             }
         });
     }
+
+    for (auto &thread : threads) {
+        if (thread.joinable()) {
+            thread.join();
+        }
+    }
 }
